@@ -1,0 +1,102 @@
+/* styles.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+#loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.loading-spinner {
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#game-container {
+    text-align: center;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.cell:hover {
+    background-color: #444;
+}
+
+.cell.x {
+    color: red;
+    text-shadow: 0 0 20px red;
+}
+
+.cell.o {
+    color: blue;
+    text-shadow: 0 0 20px blue;
+}
+
+.cell.x::after, .cell.o::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cell.x::after {
+    box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
+}
+
+.cell.o::after {
+    box-shadow: 0 0 20px blue, 0 0 40px blue, 0 0 60px blue;
+}
+
+.cell.x.active::after, .cell.o.active::after {
+    opacity: 1;
+}
